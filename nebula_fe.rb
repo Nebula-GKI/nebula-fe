@@ -8,7 +8,7 @@ require 'later_dude'
 
 raise 'No conversation directory specified.' if ARGV.length < 1
 
-conversation_root_dir = Pathname.new(ARGV.first)
+conversation_root_dir = Pathname.new(ARGV.last)
 
 get '/' do
   conversation_root_dir.entries.join("<br>\n")
