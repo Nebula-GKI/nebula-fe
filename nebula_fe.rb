@@ -6,6 +6,7 @@ require 'action_view'
 require 'active_support/core_ext'
 require 'later_dude'
 require 'sinatra/form_helpers'
+require 'icalendar'
 
 raise 'No conversation directory specified.' if ARGV.length < 1
 
@@ -26,5 +27,15 @@ get '/event' do
 end
 
 post '/event' do
-  params.inspect
+  event = params[:event]
+
+  cal = Icalendar::Calendar.new
+  cal.event do |e|
+    e.dtstart     = Icalendar::Values::Date.new(event[:start])
+    # :TODO: need to take a duration and calculate an offset time
+    e.dtend       = Icalendar::Values::Date.new(event[:duration])
+    e.summary     = event[:summary]
+    e.description = event[:description]
+  end
+  cal.to_ical
 end
