@@ -1,4 +1,11 @@
 = form 'event', :post
 Enter event details:
-= input :name
+= label :event, :summary
+= input :event, :summary
+= label :event, :description
+= textarea :event, :description
+= label :event, :start
+= input :event, :start
+= label :event, :duration
+= input :event, :duration
 = submit :create
