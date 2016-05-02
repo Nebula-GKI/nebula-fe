@@ -34,7 +34,7 @@ post '/event' do
   # join the date and time back together since we can't seem to get that from Nickel directly
   start_time = Time.parse([event.occurrences.first.start_date, event.occurrences.first.start_time].join('T'))
   begin
-    end_time   = Time.parse([event.occurrences.first.end_date, event.occurrences.first.end_time].join('T'))
+    end_time   = Time.parse([event.occurrences.first.end_date || event.occurrences.first.start_date, event.occurrences.first.end_time].join('T'))
   rescue ArgumentError
     # default to 1 hour if we are not given an end time
     end_time   = start_time + (1 * 60 * 60)
