@@ -37,5 +37,5 @@ post '/event' do
     e.summary     = event[:summary]
     e.description = event[:description]
   end
-  cal.to_ical
+  "<pre>#{cal.to_ical}</pre>"
 end
