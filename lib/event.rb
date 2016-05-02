@@ -3,7 +3,7 @@ require 'icalendar'
 
 module Nebula
   class Event
-    attr_reader :summary, :description, :start_dt, :end_dt, :duration, :message
+    attr_reader :summary, :description, :start_dt, :duration, :message
 
     def initialize(summary, description = nil, start_dt = nil, duration = 1.hour)
       @summary = summary
@@ -20,6 +20,10 @@ module Nebula
         # default to 1 hour if we are not given an end time
         @end_dt   = @start_dt + duration
       end
+    end
+
+    def end_dt
+      start_dt + duration
     end
 
     def to_ical (cal = Icalendar::Calendar.new)
