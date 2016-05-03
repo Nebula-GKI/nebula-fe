@@ -1,4 +1,3 @@
-require 'pathname'
 require 'sinatra'
 
 require 'rubygems'
@@ -10,11 +9,12 @@ require 'sinatra/form_helpers'
 # add our lib dir to the load path
 $LOAD_PATH << File.expand_path(File.dirname(__FILE__) + '/lib')
 require 'error'
+require 'conversation'
 require 'event'
 
 raise 'No conversation directory specified.' if ARGV.length < 1
 
-conversation_root_dir = Pathname.new(ARGV.last)
+Nebula::Conversation.new(ARGV.last)
 
 get '/' do
   haml :main
