@@ -11,6 +11,7 @@ $LOAD_PATH << File.expand_path(File.dirname(__FILE__) + '/lib')
 require 'error'
 require 'conversation'
 require 'event'
+require 'task'
 
 raise 'No conversation directory specified.' if ARGV.length < 1
 
@@ -37,4 +38,8 @@ end
 
 get '/task' do
   haml :task
+end
+
+post '/task' do
+  task = Nebula::Task.new(params[:task][:summary], params[:task][:description])
 end
