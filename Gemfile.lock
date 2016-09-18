@@ -16,6 +16,7 @@ GEM
     builder (3.2.2)
     erubis (2.7.0)
     i18n (0.7.0)
+    icalendar (2.4.1)
     json (1.8.3)
     later_dude (0.3.3)
     loofah (2.0.3)
@@ -52,6 +53,7 @@ PLATFORMS
 DEPENDENCIES
   actionview (>= 4.2.6)
   activesupport (>= 4.2.6)
+  icalendar (>= 2.4.1)
   later_dude (>= 0.3.3)
   nickel (>= 0.1.6)
   sinatra (>= 1.4.7)
