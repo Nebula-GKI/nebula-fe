@@ -9,13 +9,14 @@ require 'sinatra/form_helpers'
 # add our lib dir to the load path
 $LOAD_PATH << File.expand_path(File.dirname(__FILE__) + '/lib')
 require 'error'
+require 'utility'
 require 'conversation'
 require 'event'
 require 'task'
 
 raise 'No conversation directory specified.' if ARGV.length < 1
 
-Nebula::Conversation.new(ARGV.last)
+conversation = Nebula::Conversation.new(ARGV.last)
 
 get '/' do
   haml :main
@@ -42,4 +43,5 @@ end
 
 post '/task' do
   task = Nebula::Task.new(params[:task][:summary], params[:task][:description])
+  task.save conversation
 end
