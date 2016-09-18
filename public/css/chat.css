@@ -1,0 +1,91 @@
+* {
+  font-family: sans-serif;
+}
+
+#main {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+}
+
+.chatbox {
+  background-color: black;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+}
+
+.history {
+  background-color: gray;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 47px;
+  overflow-y: scroll;
+}
+
+.controls {
+  background-color: rgb(95, 154, 201);
+  position: absolute;
+  padding: 2px;
+  padding-left: 5px;
+  height: 35px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+}
+
+.chat-input {
+  background-color: rgb(247, 250, 209);
+  width: 100%;
+  max-width: 400px;
+}
+
+input, button {
+  font-size: 1.4em;
+}
+
+span.chat {
+  background-color: rgb(247, 250, 209);
+  display: block;
+  padding: 5px;
+  padding-left: 7px;
+}
+
+span.chat-author {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-right: 7px;
+}
+
+span.chat-message {
+  padding: 2px;
+}
+
+.data-preview {
+  background-color: white;
+  position: absolute;
+  z-index: 5000;
+  top: 10px;
+  right: 10px;
+  padding: 5px;
+}
+
+.login {
+  padding: 10px;
+  background-color: #AAAAAA;
+  width: 100%;
+  max-width: 400px;
+  height: 200px;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
