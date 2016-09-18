@@ -3,7 +3,6 @@
 
   window.ChatBox = React.createFactory(React.createClass({
     getInitialState: function() {
-      console.log(this.props);
       return {
         history: [],
         debug: false,
@@ -25,7 +24,6 @@
     },
     sendMessage: function() {
       var _this = this;
-      var _id, i, len, ref;
 
       if (this.state.message === ':debug') {
         this.setState({
@@ -72,17 +70,18 @@
       return r.div({
         className: 'chatbox'
       }, [
-        this.state.debug ? r.pre({
-          className: 'data-preview'
-        }, r.code({}, JSON.stringify(this.state, null, '  '))) : void 0, r.div({
+        this.state.debug ?
+          r.pre({className: 'data-preview'},
+            r.code({}, JSON.stringify(this.state, null, '  '))) : undefined,
+        r.div({
           ref: 'history',
           className: 'history'
         }, [
-          this.renderChatMessage({
-            name: 'System',
-            message: "Welcome, " + this.state.name + "!"
-          })
-        ].concat(this.state.history.map(this.renderChatMessage))), r.div({
+            this.renderChatMessage({
+              name: 'System',
+              message: "Welcome, " + this.state.name + "!" })
+           ].concat(this.state.history.map(this.renderChatMessage))),
+        r.div({
           className: 'controls'
         }, [
           r.input({
@@ -90,8 +89,8 @@
             className: 'chat-input',
             onKeyPress: this.submitIfEnter,
             onChange: this.setMessage,
-            value: this.state.message
-          }), r.button({
+            value: this.state.message}),
+          r.button({
             className: 'sendButton',
             onClick: this.sendMessage
           }, 'Send')

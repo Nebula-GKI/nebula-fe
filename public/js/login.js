@@ -26,7 +26,9 @@
       return r.div({
         className: 'login'
       }, [
-        r.h2({}, 'Hello!'), r.p({}, 'Please tell us your name before you join the chat.'), r.input({
+        r.h2({}, 'Hello!'),
+        r.p({}, 'Please tell us your name before you join the chat.'),
+        r.input({
           ref: 'loginInput',
           className: 'login-input',
           onChange: this.setName,
