@@ -8,24 +8,23 @@
 
     // call API and call onHistoryUpdate
     refresh: function() {
-      var _this = this;
-
-      // mock ajax call
-      setTimeout(function() {
-        _this.onHistoryUpdate(history);
-      }, 100);
+      console.log('API refreshing');
+      aja()
+        .method('get')
+        .url('/messages')
+        .on('200', this.onHistoryUpdate)
+        .go();
     },
 
     // send chat and call onHistoryUpdate
     sendChat: function(chat) {
-      var _this = this;
-      // send chat
-      history.push(chat);
-
-      // call onHistoryUpdate
-      setTimeout(function() {
-        _this.onHistoryUpdate(history);
-      }, 100);
+      console.log('API sending chat:', chat);
+      aja()
+        .method('post')
+        .url('/message')
+        .on('201', this.onHistoryUpdate)
+        .body(chat)
+        .go();
     },
   }
 })();

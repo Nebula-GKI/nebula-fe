@@ -15,6 +15,7 @@
       chatApi.refresh();
     },
     setHistory: function(history) {
+      console.log('setting history to:', history);
       this.setState({history: history});
     },
     setMessage: function(e) {
