@@ -8,7 +8,7 @@ module Nebula
 
     def chrono_file_name(suffix, user_name = nil, time = Time.now)
       # :TODO: need to sanitize the output of 'node_user_name' so it is suitable for a file name
-      [chrono_file_dt(time), user_name].join('-') + suffix
+      [[chrono_file_dt(time), user_name].join('-'), suffix].join('.')
     end
   end
 end
