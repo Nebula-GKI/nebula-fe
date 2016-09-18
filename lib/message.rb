@@ -46,7 +46,9 @@ module Nebula
           raise EntryIgnored if PATHS_TO_EXCLUDE.include?(message_path)
 
           STDERR.puts message_path.expand_path
-          messages.push message_path.read
+          # :TODO: replace this name extraction from the file with proper identity management
+          name = message_path.basename.to_s.split('-').last.split('.', 2).first
+          messages.push({name: name, message: message_path.read.chomp})
         rescue EntryIgnored
         end
       end
