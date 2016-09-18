@@ -41,12 +41,12 @@ module Nebula
       messages = Array.new
       msg_path = Message::messages_path(conversation)
       STDERR.puts "reading messages from: #{msg_path.expand_path}"
-      msg_path.each_entry do |message_path|
+      msg_path.children(true).each do |message_path|
         begin
           raise EntryIgnored if PATHS_TO_EXCLUDE.include?(message_path)
 
-          STDERR.puts message_path.basename
-          messages.push message_path.basename
+          STDERR.puts message_path.expand_path
+          messages.push message_path.read
         rescue EntryIgnored
         end
       end
