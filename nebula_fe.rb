@@ -35,10 +35,7 @@ get '/messages' do
     messages = []
   end
   
-  respond_to do |r|
-    r.json { json messages }
-    r.html { haml :messages, :locals => {:messages => messages} }
-  end
+  json messages
 end
 
 post '/message' do
@@ -48,10 +45,7 @@ post '/message' do
 
   messages = Nebula::Message.list(conversation)
 
-  respond_to do |r|
-    r.json { MultiJson.dump(messages) }
-    r.html { messages }
-  end
+  MultiJson.dump(messages)
 end
 
 get '/calendar' do
