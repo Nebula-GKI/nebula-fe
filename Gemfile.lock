@@ -22,6 +22,7 @@ GEM
       nokogiri (>= 1.5.9)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
+    nickel (0.1.6)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     rack (1.6.4)
@@ -52,6 +53,7 @@ DEPENDENCIES
   actionview (>= 4.2.6)
   activesupport (>= 4.2.6)
   later_dude (>= 0.3.3)
+  nickel (>= 0.1.6)
   sinatra (>= 1.4.7)
   sinatra-formhelpers (>= 0.4.0)
 
