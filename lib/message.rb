@@ -11,8 +11,12 @@ module Nebula
       @text = text
     end
 
-    def messages_path
+    def self.messages_path(conversation)
       conversation.root_path + MAIN_DIR_NAME + 'messages'
+    end
+    
+    def messages_path
+      Message.messages_path(conversation)
     end
 
     def save
