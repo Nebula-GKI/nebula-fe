@@ -6,6 +6,7 @@ require 'action_view'
 require 'active_support/core_ext'
 require 'later_dude'
 require 'sinatra/form_helpers'
+require 'sinatra/respond_with'
 
 # add our lib dir to the load path
 $LOAD_PATH << File.expand_path(File.dirname(__FILE__) + '/lib')
@@ -17,6 +18,8 @@ require 'event'
 require 'task'
 
 raise 'No conversation directory specified.' if ARGV.length < 1
+
+respond_to :html, :json
 
 conversation = Nebula::Conversation.new(ARGV.last)
 
@@ -30,8 +33,11 @@ get '/messages' do
   rescue Errno::ENOENT
     messages = []
   end
-  # json messages
-  haml :messages, :locals => {:messages => messages}
+  
+  respond_to do |r|
+    r.json { json messages }
+    r.html { haml :messages, :locals => {:messages => messages} }
+  end
 end
 
 post '/message' do
