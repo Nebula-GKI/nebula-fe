@@ -1,6 +1,6 @@
 module Nebula
   module Utility
-    CHRONO_FILE_DATE_FORMAT = '%Y-%m-%dT%H-%M-%SZ'
+    CHRONO_FILE_DATE_FORMAT = '%Y%m%dT%H%M%S.%LZ'
 
     def chrono_file_dt(time = Time.now)
       time.utc.strftime(CHRONO_FILE_DATE_FORMAT)
