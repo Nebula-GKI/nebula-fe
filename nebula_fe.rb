@@ -25,8 +25,13 @@ get '/' do
 end
 
 get '/messages' do
-  messages = Nebula::Message.list(conversation)
-  json messages
+  begin
+    messages = Nebula::Message.list(conversation)
+  rescue Errno::ENOENT
+    messages = []
+  end
+  # json messages
+  haml :messages, :locals => {:messages => messages}
 end
 
 post '/message' do

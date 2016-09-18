@@ -1,8 +1,9 @@
 %h1 Nebula Messages
 
 %ol
-  - messages.each do |message|
-    %li= message
+  - unless messages.nil?
+    - messages.each do |message|
+      %li= message
 
 %h2 Add message
 
