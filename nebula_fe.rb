@@ -22,6 +22,10 @@ get '/' do
   haml :main
 end
 
+get '/messages' do
+  haml :messages
+end
+
 get '/calendar' do
   current_time = Time.now
 
