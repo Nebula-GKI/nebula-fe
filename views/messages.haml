@@ -1,1 +1,8 @@
 %h1 Nebula Messages
+
+%h2 Add message
+
+= form 'message', :post
+Message:
+= input :message, :text
+= submit :send

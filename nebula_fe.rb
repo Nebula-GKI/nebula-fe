@@ -26,6 +26,10 @@ get '/messages' do
   haml :messages
 end
 
+post '/message' do
+  params[:message].inspect
+end
+
 get '/calendar' do
   current_time = Time.now
 
