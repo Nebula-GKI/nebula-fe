@@ -20,7 +20,8 @@
 }
 
 .history {
-  background-color: gray;
+  background-color: black;
+  background-size: cover;
   position: absolute;
   top: 5px;
   left: 5px;
@@ -30,7 +31,7 @@
 }
 
 .controls {
-  background-color: rgb(95, 154, 201);
+  background-color: rgb(39, 43, 45);
   position: absolute;
   padding: 2px;
   padding-left: 5px;
@@ -41,7 +42,8 @@
 }
 
 .chat-input {
-  background-color: rgb(247, 250, 209);
+  color: white;
+  background-color: hsla(217,103%,31%,40);
   width: 100%;
   max-width: 400px;
 }
@@ -50,8 +52,14 @@ input, button {
   font-size: 1.4em;
 }
 
+button.sendButton {
+  background-color: hsla(0,0%,30%,1);
+  color: white;
+}
+
 span.chat {
-  background-color: rgb(247, 250, 209);
+  color: white;
+  background-color: rgba(20, 20, 20, 0.5);
   display: block;
   padding: 5px;
   padding-left: 7px;
@@ -68,7 +76,7 @@ span.chat-message {
 }
 
 .data-preview {
-  background-color: white;
+  background-color: rgba(155, 155, 155, 0.5);
   position: absolute;
   z-index: 5000;
   top: 10px;

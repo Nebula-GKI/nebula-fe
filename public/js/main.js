@@ -5,7 +5,7 @@
   window.Main = React.createFactory(React.createClass({
     getInitialState: function() {
       return {
-        name: null,
+        name: 'Brandon',
         chatHistory: [],
         debug: false
       }

@@ -1,12 +1,18 @@
 (function() {
   var r = React.DOM;
 
+  function randomBg() {
+    var n = Math.floor(Math.random() * 10);
+    return "url(/img/neb"+n+".jpg)";
+  }
+
   window.ChatBox = React.createFactory(React.createClass({
     getInitialState: function() {
       return {
         history: [],
         debug: false,
         name: this.props.name,
+        bg: randomBg(),
       };
     },
     componentWillMount: function() {
@@ -77,7 +83,10 @@
             r.code({}, JSON.stringify(this.state, null, '  '))) : undefined,
         r.div({
           ref: 'history',
-          className: 'history'
+          className: 'history',
+          style: {
+            backgroundImage: this.state.bg,
+          },
         }, [
             this.renderChatMessage({
               name: 'System',
