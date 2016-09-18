@@ -32,7 +32,7 @@
         });
       }
 
-      } else if (this.state.message !== '') {
+      else if (this.state.message !== '') {
         chatApi.sendChat({
           name: this.state.name,
           message: this.state.message
@@ -61,7 +61,8 @@
       }, [
         r.span({
           className: 'chat-author'
-        }, message.name + ':'), r.span({
+        }, message.name + ':'),
+        r.span({
           className: 'chat-message'
         }, message.message)
       ]);
