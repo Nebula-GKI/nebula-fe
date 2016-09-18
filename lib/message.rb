@@ -1,6 +1,7 @@
 module Nebula
   class Message
     include Utility
+    extend Utility
     class Error < Nebula::Error; end
     class MessageFileExists < Error; end
     class EntryIgnored < Error; end
@@ -47,9 +48,11 @@ module Nebula
 
           STDERR.puts message_path.expand_path
           # :TODO: replace this name extraction from the file with proper identity management
-          name = message_path.basename.to_s.split('-').last.split('.', 2).first
-          messages.push({name: name, message: message_path.read.chomp})
+          message_info = parse_chrono_file_name(message_path.basename.to_s)
+          messages.push({name: message_info[:name], message: message_path.read.chomp})
         rescue EntryIgnored
+        rescue ArgumentError
+          # ignore files with incorrect date strings
         end
       end
       messages
