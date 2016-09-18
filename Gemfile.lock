@@ -72,6 +72,7 @@ DEPENDENCIES
   haml (>= 4.0.7)
   icalendar (>= 2.4.1)
   later_dude (>= 0.3.3)
+  multi_json
   nickel (>= 0.1.6)
   sinatra (>= 1.4.7)
   sinatra-contrib
