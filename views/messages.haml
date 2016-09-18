@@ -1,5 +1,9 @@
 %h1 Nebula Messages
 
+%ol
+  - messages.each do |message|
+    %li= message
+
 %h2 Add message
 
 = form 'message', :post

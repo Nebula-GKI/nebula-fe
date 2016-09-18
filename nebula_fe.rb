@@ -24,7 +24,8 @@ get '/' do
 end
 
 get '/messages' do
-  haml :messages
+  messages = Nebula::Message.list(conversation)
+  haml :messages, :locals => {:messages => messages}
 end
 
 post '/message' do

@@ -35,5 +35,16 @@ module Nebula
 
       text # just here to provide something to look at
     end
+    
+    def self.list(conversation)
+      messages = Array.new
+      msg_path = Message::messages_path(conversation)
+      STDERR.puts "reading messages from: #{msg_path.expand_path}"
+      msg_path.each_entry do |message_path|
+        STDERR.puts message_path.basename
+        messages.push message_path.basename
+      end
+      messages
+    end
   end
 end
