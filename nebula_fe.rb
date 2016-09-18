@@ -45,6 +45,7 @@ post '/message' do
 
   messages = Nebula::Message.list(conversation)
 
+  status 201
   MultiJson.dump(messages)
 end
 
