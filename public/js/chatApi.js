@@ -11,6 +11,7 @@
       console.log('API refreshing');
       aja()
         .method('get')
+        .header('Accepts', 'application/json')
         .url('/messages')
         .on('200', this.onHistoryUpdate)
         .go();
@@ -21,6 +22,7 @@
       console.log('API sending chat:', chat);
       aja()
         .method('post')
+        .header('Accepts', 'application/json')
         .url('/message')
         .on('201', this.onHistoryUpdate)
         .body(chat)
