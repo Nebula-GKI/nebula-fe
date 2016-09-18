@@ -7,6 +7,7 @@ require 'active_support/core_ext'
 require 'later_dude'
 require 'sinatra/form_helpers'
 require 'sinatra/respond_with'
+require 'multi_json'
 
 # add our lib dir to the load path
 $LOAD_PATH << File.expand_path(File.dirname(__FILE__) + '/lib')
@@ -41,7 +42,16 @@ get '/messages' do
 end
 
 post '/message' do
-  Nebula::Message.new(conversation, params[:message][:text]).save
+  msg = MultiJson.load(request.body, symbolize_keys: true)
+  STDERR.puts msg.inspect
+  Nebula::Message.new(conversation, msg[:message]).save
+
+  messages = Nebula::Message.list(conversation)
+
+  respond_to do |r|
+    r.json { MultiJson.dump(messages) }
+    r.html { messages }
+  end
 end
 
 get '/calendar' do
