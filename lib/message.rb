@@ -3,6 +3,7 @@ module Nebula
     include Utility
     class Error < Nebula::Error; end
     class MessageFileExists < Error; end
+    class EntryIgnored < Error; end
 
     attr_reader :conversation, :text
 
@@ -41,8 +42,13 @@ module Nebula
       msg_path = Message::messages_path(conversation)
       STDERR.puts "reading messages from: #{msg_path.expand_path}"
       msg_path.each_entry do |message_path|
-        STDERR.puts message_path.basename
-        messages.push message_path.basename
+        begin
+          raise EntryIgnored if PATHS_TO_EXCLUDE.include?(message_path)
+
+          STDERR.puts message_path.basename
+          messages.push message_path.basename
+        rescue EntryIgnored
+        end
       end
       messages
     end

@@ -2,6 +2,7 @@ require 'pathname'
 
 module Nebula
   MAIN_DIR_NAME = '.nebula'
+  PATHS_TO_EXCLUDE = ['.', '..', '.DS_Store'].map {|p| Pathname.new(p)}
 
   class Conversation
     attr_reader :root_path, :user_name
