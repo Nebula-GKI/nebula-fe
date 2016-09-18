@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'sinatra/json'
 
 require 'rubygems'
 require 'action_view'
@@ -25,7 +26,7 @@ end
 
 get '/messages' do
   messages = Nebula::Message.list(conversation)
-  haml :messages, :locals => {:messages => messages}
+  json messages
 end
 
 post '/message' do
