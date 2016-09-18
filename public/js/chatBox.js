@@ -1,59 +1,60 @@
 (function() {
   var r = React.DOM;
 
-  window.ChatBox = ReactMeteor.createClass({
-    getMeteorState: function() {
+  window.ChatBox = React.createFactory(React.createClass({
+    getInitialState: function() {
+      console.log(this.props);
       return {
-        history: ChatHistory.find().fetch(),
-        debug: Session.get('debug'),
-        name: Session.get('name')
+        history: [],
+        debug: false,
+        name: this.props.name,
       };
     },
+    componentWillMount: function() {
+      // override callback to receive updates
+      chatApi.onHistoryUpdate = this.setHistory.bind(this);
+      chatApi.refresh();
+    },
+    setHistory: function(history) {
+      this.setState({history: history});
+    },
     setMessage: function(e) {
-      return this.setState({
+      this.setState({
         message: e.target.value
       });
     },
     sendMessage: function() {
+      var _this = this;
       var _id, i, len, ref;
+
       if (this.state.message === ':debug') {
-        Session.set('debug', Session.get('debug') !== true);
-        return this.setState({
-          message: ''
+        this.setState({
+          debug: this.state.debug !== true,
+          message: '',
         });
-      } else if (this.state.message === ':reset') {
-        ref = ChatHistory.find({}).fetch();
-        for (i = 0, len = ref.length; i < len; i++) {
-          _id = ref[i]._id;
-          ChatHistory.remove({
-            _id: _id
-          });
-        }
-        return this.setState({
-          message: ''
-        });
+      }
+
       } else if (this.state.message !== '') {
-        ChatHistory.insert({
+        chatApi.sendChat({
           name: this.state.name,
           message: this.state.message
         });
-        return this.setState({
+
+        this.setState({
           message: ''
-        }, (function(_this) {
-          return function() {
-            return setTimeout(_this.scrollToBottom, 1);
-          };
-        })(this));
+        }, function() {
+          // lame timing issues
+          setTimeout(_this.scrollToBottom, 1);
+        });
       }
     },
     scrollToBottom: function() {
-      var pane;
-      pane = this.refs.history.getDOMNode();
-      return pane.scrollTop = pane.scrollHeight;
+      var pane = ReactDOM.findDOMNode(this.refs.history);
+      pane.scrollTop = pane.scrollHeight;
     },
     submitIfEnter: function(e) {
       if (e.charCode === 13) {
-        return this.sendMessage();
+        this.sendMessage();
       }
     },
     renderChatMessage: function(message) {
@@ -98,12 +99,12 @@
       ]);
     },
     componentDidMount: function() {
-      this.refs.chatInput.getDOMNode().focus();
-      return this.scrollToBottom();
+      var pane = ReactDOM.findDOMNode(this.refs.chatInput).focus();
+      this.scrollToBottom();
     },
     componentDidUpdate: function() {
-      return this.scrollToBottom();
+      this.scrollToBottom();
     }
-  });
+  }));
 
 })();

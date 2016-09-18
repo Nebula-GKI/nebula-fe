@@ -1,10 +1,10 @@
 (function() {
   var r = React.DOM;
 
-  window.Login = ReactMeteor.createClass({
-    getMeteorState: function() {
+  window.Login = React.createFactory(React.createClass({
+    getInitialState: function() {
       return {
-        name: Session.get('name')
+        name: null
       };
     },
     setName: function(e) {
@@ -14,7 +14,7 @@
     },
     setSessionName: function() {
       if (this.state.name !== '') {
-        return Session.set('name', this.state.name);
+        this.props.setName(this.state.name);
       }
     },
     submitIfEnter: function(e) {
@@ -38,8 +38,8 @@
       ]);
     },
     componentDidMount: function() {
-      return this.refs.loginInput.getDOMNode().focus();
+      ReactDOM.findDOMNode(this.refs.loginInput).focus();
     }
-  });
+  }));
 
 })();

@@ -1,21 +1,26 @@
 (function() {
   var r = React.DOM;
+  var d = ReactDOM;
 
-  window.Main = ReactMeteor.createClass({
-    getMeteorState: function() {
+  window.Main = React.createFactory(React.createClass({
+    getInitialState: function() {
       return {
-        name: Session.get('name')
-      };
+        name: null,
+        chatHistory: [],
+        debug: false
+      }
     },
     render: function() {
       if (this.state.name != null) {
-        return ChatBox();
+        return ChatBox({name: this.state.name});
       } else {
-        return Login();
+        return Login({setName: this.setName});
       }
+    },
+    setName: function(name) {
+      this.setState({name: name});
     }
-  });
+  }));
 
-  return React.renderComponent(Main(), document.getElementById('main'));
-
+  return ReactDOM.render(Main(), document.getElementById('main'));
 })();
