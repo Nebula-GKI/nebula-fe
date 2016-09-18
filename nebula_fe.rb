@@ -11,6 +11,7 @@ $LOAD_PATH << File.expand_path(File.dirname(__FILE__) + '/lib')
 require 'error'
 require 'utility'
 require 'conversation'
+require 'message'
 require 'event'
 require 'task'
 
@@ -27,7 +28,7 @@ get '/messages' do
 end
 
 post '/message' do
-  params[:message].inspect
+  Nebula::Message.new(conversation, params[:message][:text]).save
 end
 
 get '/calendar' do

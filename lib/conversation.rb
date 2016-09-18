@@ -1,6 +1,8 @@
 require 'pathname'
 
 module Nebula
+  MAIN_DIR_NAME = '.nebula'
+
   class Conversation
     attr_reader :root_path, :user_name
 
