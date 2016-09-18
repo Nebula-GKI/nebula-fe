@@ -48,6 +48,7 @@ PLATFORMS
 
 DEPENDENCIES
   actionview (>= 4.2.6)
+  activesupport (>= 4.2.6)
   sinatra (>= 1.4.7)
 
 BUNDLED WITH
