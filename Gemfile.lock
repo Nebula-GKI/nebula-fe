@@ -50,6 +50,7 @@ GEM
       sinatra (~> 1.0)
     thread_safe (0.3.5)
     tilt (2.0.5)
+    trollop (2.1.2)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
 
@@ -67,6 +68,7 @@ DEPENDENCIES
   sinatra (>= 1.4.7)
   sinatra-formhelpers (>= 0.4.0)
   sinatra-json (>= 0.1.0)
+  trollop
 
 BUNDLED WITH
    1.11.2

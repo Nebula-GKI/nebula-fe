@@ -12,3 +12,6 @@ gem 'nickel', '>= 0.1.6'
 gem 'icalendar', '>= 2.4.1'
 gem 'haml', '>= 4.0.7'
 gem 'multi_json'
+
+# for command line options parsing
+gem 'trollop'
