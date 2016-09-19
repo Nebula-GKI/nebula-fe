@@ -6,7 +6,6 @@ require 'action_view'
 require 'active_support/core_ext'
 require 'later_dude'
 require 'sinatra/form_helpers'
-require 'sinatra/respond_with'
 require 'multi_json'
 
 # add our lib dir to the load path
@@ -19,8 +18,6 @@ require 'event'
 require 'task'
 
 raise 'No conversation directory specified.' if ARGV.length < 1
-
-respond_to :html, :json
 
 conversation = Nebula::Conversation.new(ARGV.last)
 

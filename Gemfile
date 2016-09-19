@@ -4,7 +4,6 @@ ruby '2.2.1'
 
 gem 'sinatra', '>= 1.4.7'
 gem 'sinatra-json', '>= 0.1.0'
-gem 'sinatra-contrib'
 gem 'actionview', '>= 4.2.6'
 gem 'activesupport', '>= 4.2.6'
 gem 'later_dude', '>= 0.3.3'
