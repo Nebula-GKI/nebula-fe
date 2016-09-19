@@ -1,3 +1,20 @@
+# command line options parsing
+# :NOTE: this MUST come before the "require 'sinatra'" or it's OptionParser will override trollop
+require 'trollop'
+
+opts = Trollop::options do
+  version "Nebula-FE 0.1"
+  banner <<-EOS
+Nebula-FE acts as a frontend proof of concept for the Nebula protocol.
+
+Usage:
+       nebula-fe [options] <conversation_path>+
+where [options] are:
+EOS
+
+  opt :new, "Create a new conversation if one does not exist at the specified path"
+end
+
 require 'sinatra'
 require 'sinatra/json'
 
