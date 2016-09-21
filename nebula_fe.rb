@@ -53,6 +53,7 @@ class NebulaFe < Sinatra::Base
   helpers Sinatra::FormHelpers
 
   get '/' do
+    @name = $identity.name
     haml :main
   end
 
