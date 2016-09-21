@@ -25,7 +25,10 @@ begin
   $identity = Nebula::Identity.new(opts[:identity])
 rescue Nebula::Identity::RootPathDoesNotExist
   if opts[:new] && !opts[:identity].blank?
-    FileUtils.mkdir_p opts[:identity]
+    identity_path = Pathname.new(opts[:identity])
+    # we expand the path before calling mkdir_p so we don't end up creating literal tilde directories
+    # turns out, Pathname.mkpath takes things very literally
+    FileUtils.mkdir_p identity_path.expand_path
   else
     STDERR.puts "Identity does not exist at path: #{opts[:identity]}"
     STDERR.puts "Try running with the '--new' option"
