@@ -19,11 +19,16 @@ module Nebula
     end
 
     def identity_store
-      @identity_store ||= YAML.load_file(identity_file)
+      identity_file_mtime = identity_file.mtime
+      if (@identity_store.nil? or identity_file_mtime != @identity_file_mtime)
+        @identity_file_mtime = identity_file_mtime
+        @identity_store = YAML.load_file(identity_file)
+      end
+      @identity_store
     end
 
     def name
-      @name ||= identity_store.fetch(:name, '')
+      identity_store.fetch(:name)
     end
 
     def name=(name)
