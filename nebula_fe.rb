@@ -15,8 +15,11 @@ Usage:
 where [options] are:
 EOS
 
+  opt :identity, "Path to identity", type: :string, default: '~/.nebula/identity'
   opt :new, "Create a new conversation if one does not exist at the specified path"
 end
+
+$identity = Nebula::Identity.new(opts[:identity])
 
 require 'sinatra'
 require 'sinatra/json'
