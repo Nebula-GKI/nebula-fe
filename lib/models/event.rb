@@ -1,3 +1,4 @@
+require_relative '../error'
 require 'nickel'
 require 'icalendar'
 

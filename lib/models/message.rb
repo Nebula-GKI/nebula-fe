@@ -1,3 +1,5 @@
+require_relative '../utility'
+
 module Nebula
   class Message
     include Utility
