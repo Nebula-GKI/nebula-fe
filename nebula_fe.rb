@@ -19,6 +19,8 @@ EOS
   opt :new, "Create a new conversation if one does not exist at the specified path"
 end
 
+require File.join(File.dirname(__FILE__), 'environment')
+
 $identity = Nebula::Identity.new(opts[:identity])
 
 require 'sinatra'
@@ -29,8 +31,6 @@ require 'active_support/core_ext'
 require 'later_dude'
 require 'sinatra/form_helpers'
 require 'multi_json'
-
-require File.join(File.dirname(__FILE__), 'environment')
 
 # add our lib dir to the load path
 $LOAD_PATH << File.expand_path(File.dirname(__FILE__) + '/lib')
