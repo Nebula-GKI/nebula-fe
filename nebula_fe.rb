@@ -27,6 +27,8 @@ require 'later_dude'
 require 'sinatra/form_helpers'
 require 'multi_json'
 
+require File.join(File.dirname(__FILE__), 'environment')
+
 # add our lib dir to the load path
 $LOAD_PATH << File.expand_path(File.dirname(__FILE__) + '/lib')
 require 'error'
