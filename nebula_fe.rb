@@ -33,11 +33,6 @@ require File.join(File.dirname(__FILE__), 'environment')
 $LOAD_PATH << File.expand_path(File.dirname(__FILE__) + '/lib')
 require 'error'
 require 'utility'
-require 'conversation'
-require 'message'
-require 'event'
-require 'task'
-require 'identity'
 
 raise 'No conversation directory specified.' if ARGV.length < 1
 
