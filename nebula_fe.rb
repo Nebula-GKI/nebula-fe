@@ -1,3 +1,6 @@
+require 'rubygems'
+require 'bundler/setup'
+
 # command line options parsing
 # :NOTE: this MUST come before the "require 'sinatra'" or it's OptionParser will override trollop
 require 'trollop'
@@ -18,7 +21,6 @@ end
 require 'sinatra'
 require 'sinatra/json'
 
-require 'rubygems'
 require 'action_view'
 require 'active_support/core_ext'
 require 'later_dude'
