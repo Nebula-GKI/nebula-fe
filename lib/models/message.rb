@@ -27,7 +27,7 @@ module Nebula
     end
 
     def save
-      message_file_path = messages_path + chrono_file_name('txt', conversation.user_name)
+      message_file_path = messages_path + chrono_file_name('txt', file_safe_user_name($identity.name))
       messages_path.mkpath
 
       # we're not going to overwrite existing files
@@ -63,6 +63,10 @@ module Nebula
         end
       end
       messages
+    end
+
+    def self.file_safe_user_name(name)
+      name.to_s.tr('^A-Za-z0-9 ', '').tr(' ', '_')
     end
   end
 end
