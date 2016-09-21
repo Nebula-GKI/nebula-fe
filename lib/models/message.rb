@@ -5,12 +5,15 @@ module Nebula
     include Utility
     extend Utility
     class Error < Nebula::Error; end
+    class NilConversation < Error; end
     class MessageFileExists < Error; end
     class EntryIgnored < Error; end
 
     attr_reader :conversation, :text
 
     def initialize(conversation, text)
+      raise NilConversation if conversation.nil?
+
       @conversation = conversation
       @text = text
     end
@@ -41,6 +44,8 @@ module Nebula
     end
 
     def self.list(conversation)
+      raise NilConversation if conversation.nil?
+
       messages = Array.new
       msg_path = Message::messages_path(conversation)
       STDERR.puts "reading messages from: #{msg_path.expand_path}"

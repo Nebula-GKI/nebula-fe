@@ -2,7 +2,7 @@ class NebulaFe < Sinatra::Base
   get '/messages' do
     begin
       messages = Nebula::Message.list($conversation)
-    rescue Errno::ENOENT
+    rescue Errno::ENOENT, Nebula::Message::NilConversation
       messages = []
     end
 
