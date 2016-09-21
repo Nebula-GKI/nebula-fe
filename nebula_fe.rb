@@ -49,11 +49,6 @@ require 'later_dude'
 require 'sinatra/form_helpers'
 require 'multi_json'
 
-# add our lib dir to the load path
-$LOAD_PATH << File.expand_path(File.dirname(__FILE__) + '/lib')
-require 'error'
-require 'utility'
-
 $conversation = Nebula::Conversation.new(ARGV.last)
 
 class NebulaFe < Sinatra::Base
