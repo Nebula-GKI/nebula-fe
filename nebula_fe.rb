@@ -36,7 +36,7 @@ require 'utility'
 
 raise 'No conversation directory specified.' if ARGV.length < 1
 
-conversation = Nebula::Conversation.new(ARGV.last)
+$conversation = Nebula::Conversation.new(ARGV.last)
 
 get '/' do
   haml :main
