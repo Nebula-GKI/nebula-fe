@@ -50,6 +50,8 @@ require 'sinatra/form_helpers'
 require 'multi_json'
 
 class NebulaFe < Sinatra::Base
+  helpers Sinatra::FormHelpers
+
   get '/' do
     haml :main
   end
