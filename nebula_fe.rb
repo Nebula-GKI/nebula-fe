@@ -50,8 +50,6 @@ $LOAD_PATH << File.expand_path(File.dirname(__FILE__) + '/lib')
 require 'error'
 require 'utility'
 
-raise 'No conversation directory specified.' if ARGV.length < 1
-
 $conversation = Nebula::Conversation.new(ARGV.last)
 
 get '/' do
