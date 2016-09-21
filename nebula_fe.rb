@@ -49,8 +49,6 @@ require 'later_dude'
 require 'sinatra/form_helpers'
 require 'multi_json'
 
-$conversation = Nebula::Conversation.new(ARGV.last)
-
 class NebulaFe < Sinatra::Base
   get '/' do
     haml :main
