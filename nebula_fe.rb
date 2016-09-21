@@ -21,7 +21,17 @@ end
 
 require File.join(File.dirname(__FILE__), 'environment')
 
-$identity = Nebula::Identity.new(opts[:identity])
+begin
+  $identity = Nebula::Identity.new(opts[:identity])
+rescue Nebula::Identity::RootPathDoesNotExist
+  if opts[:new] && !opts[:identity].blank?
+    FileUtils.mkdir_p opts[:identity]
+  else
+    STDERR.puts "Identity does not exist at path: #{opts[:identity]}"
+    STDERR.puts "Try running with the '--new' option"
+    exit 1
+  end
+end
 
 require 'sinatra'
 require 'sinatra/json'
