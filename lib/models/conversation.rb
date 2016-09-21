@@ -7,11 +7,13 @@ module Nebula
 
   class Conversation
     class Error < Nebula::Error; end
+    class BlankRootPath < Error; end
     class RootPathDoesNotExist < Error; end
 
     attr_reader :root_path, :user_name
 
     def initialize(root_path)
+      raise BlankRootPath if root_path.to_s.blank?
       @root_path = Pathname.new(root_path).expand_path
       raise RootPathDoesNotExist, @root_path unless @root_path.exist?
 

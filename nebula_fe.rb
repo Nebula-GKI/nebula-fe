@@ -23,8 +23,11 @@ require File.join(File.dirname(__FILE__), 'environment')
 
 begin
   $identity = Nebula::Identity.new(opts[:identity])
+rescue Nebula::Identity::BlankRootPath
+  STDERR.puts 'The identity path cannot be blank'
+  exit 2
 rescue Nebula::Identity::RootPathDoesNotExist
-  if opts[:new] && !opts[:identity].blank?
+  if opts[:new]
     identity_path = Pathname.new(opts[:identity])
     # we expand the path before calling mkdir_p so we don't end up creating literal tilde directories
     # turns out, Pathname.mkpath takes things very literally
