@@ -37,6 +37,7 @@ require 'conversation'
 require 'message'
 require 'event'
 require 'task'
+require 'identity'
 
 raise 'No conversation directory specified.' if ARGV.length < 1
 
