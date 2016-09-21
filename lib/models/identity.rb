@@ -14,6 +14,14 @@ module Nebula
       raise RootPathDoesNotExist, @root_path unless @root_path.exist?
     end
 
+    def identity_store
+      @identity_store ||= YAML.load_file(root_path + 'identity.yaml')
+    end
+
+    def name
+      @name ||= identity_store.fetch(:name, '')
+    end
+
     def name=(name)
       (root_path + 'identity.yaml').open('w') do |f|
         f.write YAML.dump({name: name})
