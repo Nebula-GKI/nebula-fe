@@ -18,7 +18,7 @@ module Nebula
     def self.messages_path(conversation)
       conversation.root_path + MAIN_DIR_NAME + 'messages'
     end
-    
+
     def messages_path
       Message.messages_path(conversation)
     end
@@ -39,7 +39,7 @@ module Nebula
 
       text # just here to provide something to look at
     end
-    
+
     def self.list(conversation)
       messages = Array.new
       msg_path = Message::messages_path(conversation)
