@@ -26,15 +26,19 @@ module Nebula
       end
     end
 
+    def name
+      root_path.basename
+    end
+
     def self.list(path)
       # :TODO: might be able to do this more idiomatically with collect
-      conversations = Array.new
       if path.exist?
-        path.children(true) do |c_path|
-          conversations.push Conversation.new(c_path)
+        path.children(true).collect do |c_path|
+          Conversation.new(c_path)
         end
+      else
+        Array.new
       end
-      conversations
     end
   end
 end
