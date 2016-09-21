@@ -1,5 +1,7 @@
-get '/calendar' do
-  current_time = Time.now
+class NebulaFe < Sinatra::Base
+  get '/calendar' do
+    current_time = Time.now
 
-  LaterDude::Calendar.new(current_time.year, current_time.month).to_html
+    LaterDude::Calendar.new(current_time.year, current_time.month).to_html
+  end
 end

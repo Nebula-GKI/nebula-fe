@@ -40,6 +40,7 @@ rescue Nebula::Identity::RootPathDoesNotExist
 end
 
 require 'sinatra'
+require 'sinatra/base'
 require 'sinatra/json'
 
 require 'action_view'
@@ -55,12 +56,16 @@ require 'utility'
 
 $conversation = Nebula::Conversation.new(ARGV.last)
 
-get '/' do
-  haml :main
-end
+class NebulaFe < Sinatra::Base
+  get '/' do
+    haml :main
+  end
 
-# load controllers
-$LOAD_PATH.unshift("#{File.dirname(__FILE__)}/lib/controllers")
-Dir.glob("#{File.dirname(__FILE__)}/lib/controllers/*.rb").each do |lib|
-    require_relative lib
+  # load controllers
+  $LOAD_PATH.unshift("#{File.dirname(__FILE__)}/lib/controllers")
+  Dir.glob("#{File.dirname(__FILE__)}/lib/controllers/*.rb").each do |lib|
+      require_relative lib
+  end
+
+  run! if app_file == $0
 end
