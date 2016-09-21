@@ -17,5 +17,16 @@ module Nebula
       @root_path = Pathname.new(root_path).expand_path
       raise RootPathDoesNotExist, @root_path unless @root_path.exist?
     end
+
+    def self.list(path)
+      # :TODO: might be able to do this more idiomatically with collect
+      conversations = Array.new
+      if path.exist?
+        path.children(true) do |c_path|
+          conversations.push Conversation.new(c_path)
+        end
+      end
+      conversations
+    end
   end
 end
