@@ -19,16 +19,22 @@ module Nebula
     end
 
     def identity_store
+      # :TODO: we should probably be logging a warning here
+      return Hash.new('MISSING') unless identity_file.exist?
+
       identity_file_mtime = identity_file.mtime
       if (@identity_store.nil? or identity_file_mtime != @identity_file_mtime)
         @identity_file_mtime = identity_file_mtime
         @identity_store = YAML.load_file(identity_file)
       end
-      @identity_store
+
+      # this is to handle an empty file
+      # :TODO: we should probably be logging a warning here
+      @identity_store || Hash.new('EMPTY')
     end
 
     def name
-      identity_store.fetch(:name)
+      identity_store[:name]
     end
 
     def name=(name)
