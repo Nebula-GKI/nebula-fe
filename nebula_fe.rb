@@ -90,3 +90,9 @@ post '/task' do
   task = Nebula::Task.new(params[:task][:summary], params[:task][:description])
   task.save conversation
 end
+
+# load controllers
+$LOAD_PATH.unshift("#{File.dirname(__FILE__)}/lib/controllers")
+Dir.glob("#{File.dirname(__FILE__)}/lib/controllers/*.rb").each do |lib|
+    require_relative lib
+end
