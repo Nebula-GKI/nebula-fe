@@ -12,10 +12,18 @@ module Nebula
 
     attr_reader :root_path
 
-    def initialize(root_path)
+    def initialize(root_path, create = false)
       raise BlankRootPath if root_path.to_s.blank?
       @root_path = Pathname.new(root_path).expand_path
-      raise RootPathDoesNotExist, @root_path unless @root_path.exist?
+      begin
+        raise RootPathDoesNotExist, @root_path unless @root_path.exist?
+      rescue RootPathDoesNotExist
+        if create
+          @root_path.mkpath
+        else
+          raise
+        end
+      end
     end
 
     def self.list(path)

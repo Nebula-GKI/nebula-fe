@@ -3,3 +3,8 @@
 %ol
   - @conversations.each do |conversation|
     %li= conversation.name
+
+= form 'conversation', :post
+New Conversation:
+= input :conversation, :name
+= submit :Create
