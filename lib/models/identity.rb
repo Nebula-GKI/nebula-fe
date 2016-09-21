@@ -42,5 +42,10 @@ module Nebula
         f.write YAML.dump({name: name})
       end
     end
+
+    def conversations_path
+      # identity_store[:conversations_path] || Pathname.new('~/conversations').expand_path
+      Pathname.new('~/conversations').expand_path
+    end
   end
 end
